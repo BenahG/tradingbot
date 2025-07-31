@@ -1,3 +1,6 @@
+build:
+  pythonVersion: 3.11.9
+
 services:
   - type: web
     name: tradingbot
