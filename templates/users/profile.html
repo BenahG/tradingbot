@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-person-circle me-2"></i>User Profile</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <h6><i class="bi bi-person me-2"></i>Account Information</h6>
+                            <hr class="mt-1 mb-3">
+                            <p><strong>Username:</strong> {{ user.username }}</p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Last Login:</strong> {{ user.last_login|date:"Y-m-d H:i" }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <h6><i class="bi bi-shield-lock me-2"></i>Security</h6>
+                            <hr class="mt-1 mb-3">
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'password_change' %}" class="btn btn-outline-primary">
+                                    <i class="bi bi-key me-2"></i>Change Password
+                                </a>
+                                {% if user.has_active_subscription %}
+                                <a href="{% url 'payment_options' %}" class="btn btn-outline-success">
+                                    <i class="bi bi-credit-card me-2"></i>Manage Subscription
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <h6><i class="bi bi-star me-2"></i>Subscription Status</h6>
+                    <hr class="mt-1 mb-3">
+                    {% if user.has_active_subscription %}
+                    <div class="alert alert-success">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>Active</strong> until {{ user.premium_expiry|date:"Y-m-d" }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <strong>Inactive</strong> - Please subscribe to access all features
+                        <div class="mt-2">
+                            <a href="{% url 'payment_options' %}" class="btn btn-sm btn-success">
+                                <i class="bi bi-credit-card me-1"></i>Subscribe Now
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mt-3 mt-md-0">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-gear me-2"></i>Account Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'logout' %}" class="btn btn-danger">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                    </a>
+                </div>
+                
+                {% if user.is_superuser %}
+                <hr>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'admin:index' %}" class="btn btn-outline-dark">
+                        <i class="bi bi-shield-lock me-2"></i>Admin Panel
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

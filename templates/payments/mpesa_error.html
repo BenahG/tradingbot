@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}M-Pesa Payment Error{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0"><i class="bi bi-x-circle-fill me-2"></i>Payment Failed</h5>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-4">
+                    <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 3rem;"></i>
+                    <h4 class="mt-3">M-Pesa Payment Unsuccessful</h4>
+                </div>
+                
+                <div class="alert alert-warning text-start">
+                    <p class="mb-1"><strong>Possible reasons:</strong></p>
+                    <ul>
+                        <li>Insufficient M-Pesa balance</li>
+                        <li>Transaction was declined</li>
+                        <li>Network issues</li>
+                        <li>Invalid phone number format</li>
+                    </ul>
+                </div>
+                
+                <div class="d-grid gap-2 mt-4">
+                    <a href="{% url 'process_mpesa' %}" class="btn btn-success">
+                        <i class="bi bi-arrow-repeat me-2"></i>Retry M-Pesa Payment
+                    </a>
+                    <a href="{% url 'payment_options' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-credit-card me-2"></i>Try Another Payment Method
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-house me-2"></i>Return to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

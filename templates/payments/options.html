@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Options{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Subscribe to Trading Bot</h5>
+            </div>
+            <div class="card-body text-center">
+                <h4 class="mb-4">$10 per week</h4>
+                <p>Choose your payment method:</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-paypal" style="font-size: 3rem; color: #003087;"></i>
+                                <h5 class="mt-3">PayPal</h5>
+                                <p class="text-muted">Pay with your PayPal account</p>
+                                <a href="{% url 'process_paypal' %}" class="btn btn-outline-primary">
+                                    Pay with PayPal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-phone" style="font-size: 3rem; color: #00A650;"></i>
+                                <h5 class="mt-3">M-Pesa</h5>
+                                <p class="text-muted">Pay via M-Pesa mobile money</p>
+                                <a href="{% url 'process_mpesa' %}" class="btn btn-outline-success">
+                                    Pay with M-Pesa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

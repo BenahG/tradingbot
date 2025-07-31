@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Pay with M-Pesa{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Pay with M-Pesa</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="bi bi-phone" style="font-size: 3rem; color: #00A650;"></i>
+                    <h4 class="mt-3">$10.00 Weekly Subscription</h4>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">M-Pesa Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" 
+                               placeholder="e.g. 254712345678" required>
+                        <div class="form-text">Enter your M-Pesa registered phone number with country code</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-send"></i> Request Payment
+                        </button>
+                        <a href="{% url 'payment_options' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to Payment Options
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

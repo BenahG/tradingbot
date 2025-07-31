@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tradingbot
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn tradingbot.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: tradingbot.settings
+      - key: SECRET_KEY
+        value: django-insecure-@(nks7g4ao!%5jft8%^jfpj4p$&t4l=xh862rmrlw7ku8m%iai
+      - key: DEBUG
+        value: true
