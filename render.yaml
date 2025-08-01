@@ -5,8 +5,10 @@ services:
   - type: web
     name: tradingbot
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn tradingbot.wsgi:application"
+    buildCommand: |
+      echo "python-3.10.13" > runtime.txt
+      pip install -r requirements.txt
+    startCommand: gunicorn tradingbot.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: tradingbot.settings
